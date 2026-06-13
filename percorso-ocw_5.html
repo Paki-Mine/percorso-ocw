@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percorso OCW · Data Science &amp; ML — Paki Mine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F5F7;
+  --card:#FFFFFF;
+  --ink:#181B20;
+  --slate:#5C6470;
+  --line:#E1E5EA;
+  --cardinal:#A31F34;
+  --cardinal-soft:#F6E9EB;
+  --done:#1E7A4C;
+  --done-soft:#E7F3EC;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --sans:"IBM Plex Sans",-apple-system,Segoe UI,Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55}
+a{color:var(--cardinal);text-decoration:none;border-bottom:1px solid transparent}
+a:hover,a:focus-visible{border-bottom-color:var(--cardinal)}
+:focus-visible{outline:2px solid var(--cardinal);outline-offset:2px;border-radius:2px}
+
+/* ---------- header ---------- */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(243,245,247,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:980px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:16px}
+.topbar .stamp{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--cardinal);letter-spacing:.04em;white-space:nowrap}
+.gbar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.gbar > div{height:100%;width:0;background:linear-gradient(90deg,var(--cardinal),#C7405A);border-radius:99px;transition:width .4s ease}
+.gpct{font-family:var(--mono);font-size:13px;font-weight:600;min-width:88px;text-align:right;color:var(--slate)}
+.tbtn{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--slate);background:var(--card);border:1px solid var(--line);border-radius:7px;padding:5px 10px;cursor:pointer}
+.tbtn:hover{color:var(--cardinal);border-color:var(--cardinal)}
+
+header.hero{max-width:980px;margin:0 auto;padding:48px 20px 8px}
+.hero .eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cardinal)}
+.hero h1{font-size:clamp(26px,4.5vw,40px);font-weight:600;letter-spacing:-.02em;margin:8px 0 10px}
+.hero p.sub{color:var(--slate);max-width:62ch}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.hero .meta span{font-family:var(--mono);font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:4px 12px;color:var(--slate)}
+
+/* ---------- method note ---------- */
+.method{max-width:980px;margin:24px auto 0;padding:0 20px}
+.method-in{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--cardinal);border-radius:10px;padding:16px 20px;color:var(--slate)}
+.method-in strong{color:var(--ink)}
+
+/* ---------- timeline ---------- */
+main{max-width:980px;margin:0 auto;padding:28px 20px 60px;position:relative}
+.rail{position:absolute;left:39px;top:40px;bottom:40px;width:2px;background:var(--line)}
+.phase{position:relative;padding-left:60px;margin-bottom:44px}
+.phase-node{position:absolute;left:28px;top:6px;width:24px;height:24px;border-radius:50%;background:var(--paper);border:2px solid var(--cardinal);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cardinal)}
+.phase.complete .phase-node{background:var(--done);border-color:var(--done);color:#fff}
+.phase-head{margin-bottom:6px}
+.phase-head .kicker{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.phase-head h2{font-size:21px;font-weight:600;letter-spacing:-.01em}
+.phase-head .why{color:var(--slate);margin-top:4px;max-width:68ch}
+
+/* ---------- course card ---------- */
+.course{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-top:16px;overflow:hidden}
+.course-top{display:flex;align-items:flex-start;gap:16px;padding:18px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.code{font-family:var(--mono);font-weight:600;font-size:17px;color:#fff;background:var(--cardinal);border-radius:8px;padding:8px 12px;line-height:1;white-space:nowrap}
+.course.opt .code{background:var(--slate)}
+.course-title{flex:1;min-width:220px}
+.course-title h3{font-size:16px;font-weight:600}
+.course-title .desc{color:var(--slate);font-size:13.5px;margin-top:2px}
+.course-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.course-links a{font-family:var(--mono);font-size:12px;background:var(--cardinal-soft);border-radius:6px;padding:4px 10px;border-bottom:none}
+.course-links a:hover{background:#EEDADF}
+.cprog{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--slate);white-space:nowrap;margin-left:auto;align-self:center}
+.course.complete .cprog{color:var(--done)}
+
+/* ---------- checklist ---------- */
+.items{padding:6px 8px}
+.item{display:flex;align-items:flex-start;gap:12px;padding:9px 12px;border-radius:8px}
+.item:hover{background:var(--paper)}
+.item input{appearance:none;width:18px;height:18px;min-width:18px;margin-top:2px;border:2px solid var(--slate);border-radius:5px;cursor:pointer;position:relative}
+.item input:checked{background:var(--done);border-color:var(--done)}
+.item input:checked::after{content:"";position:absolute;left:4px;top:0px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.item .body{flex:1;min-width:0}
+.item label{cursor:pointer;display:block}
+.ilinks{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+.ilinks a{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cardinal);background:var(--cardinal-soft);border-radius:5px;padding:2px 8px;border-bottom:none}
+.ilinks a:hover{background:#EEDADF}
+.ilinks a.alt{color:var(--slate);background:var(--paper);border:1px solid var(--line)}
+.ilinks a.alt:hover{color:var(--cardinal);border-color:var(--cardinal)}
+.item .t{font-weight:500}
+.item input:checked ~ label .t{color:var(--slate);text-decoration:line-through;text-decoration-color:var(--done)}
+.item .d{display:block;font-size:13px;color:var(--slate)}
+.item .tag{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cardinal);background:var(--cardinal-soft);border-radius:5px;padding:1px 7px;margin-right:6px;white-space:nowrap}
+.item .tag.ps{color:#7A5B00;background:#F7EFD8}
+.item .tag.cap{color:#1E5FA8;background:#E4EEF9}
+.sep{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);padding:14px 12px 4px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);background:var(--card)}
+.foot-in{max-width:980px;margin:0 auto;padding:24px 20px;color:var(--slate);font-size:13px}
+.foot-in a{font-weight:500}
+
+@media (max-width:640px){
+  .rail{left:29px}
+  .phase{padding-left:46px}
+  .phase-node{left:18px}
+  .gpct{min-width:64px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-in">
+    <span class="stamp">OCW·PLAN</span>
+    <div class="gbar"><div id="gbar-fill"></div></div>
+    <span class="gpct" id="gpct">0 / 0</span>
+    <button class="tbtn" id="btn-export" type="button" title="Scarica il progresso come file JSON">Esporta</button>
+    <label class="tbtn" for="file-import" title="Ripristina il progresso da un file JSON">Importa<input type="file" id="file-import" accept=".json" hidden></label>
+  </div>
+</div>
+
+<header class="hero">
+  <span class="eyebrow">MIT OpenCourseWare · Percorso personale</span>
+  <h1>Dalle basi di Python al Machine Learning</h1>
+  <p class="sub">Cinque fasi in sequenza, un corso alla volta. Ogni voce qui sotto è una settimana di studio (~3 ore): video o dispense, lettura, esercizi. Spunta le caselle man mano che avanzi — il progresso resta salvato nel browser.</p>
+  <div class="meta">
+    <span>5 fasi</span><span>~3 h/settimana</span><span>≈ 18–22 mesi</span><span>Licenza CC BY-NC-SA</span>
+  </div>
+</header>
+
+<div class="method">
+  <div class="method-in">
+    <strong>Metodo settimanale:</strong> ① guarda la lezione / leggi le note (~50–60 min) → ② rileggi e prendi appunti (~30 min) → ③ fai gli esercizi (~90 min). Gli esercizi sono la parte non negoziabile: se una settimana hai poco tempo, salta il video e finisci gli esercizi della settimana precedente, mai il contrario.
+  </div>
+</div>
+
+<main>
+  <div class="rail"></div>
+  <div id="plan"></div>
+</main>
+
+<footer>
+  <div class="foot-in">
+    Materiali da <a href="https://ocw.mit.edu" target="_blank" rel="noopener">MIT OpenCourseWare</a>, licenza <a href="https://ocw.mit.edu/terms" target="_blank" rel="noopener">Creative Commons BY-NC-SA</a>. I titoli delle lezioni sono indicativi: il riferimento autorevole è sempre la pagina del corso. Il progresso è salvato localmente in questo browser; usa <strong>Esporta / Importa</strong> in alto per fare backup o spostarlo su un altro dispositivo.
+  </div>
+</footer>
+
+<script>
+/* Base URL per corso (link verificati su ocw.mit.edu, giugno 2026) */
+const B1="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/";
+const B2="https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/";
+const B3="https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/";
+const B4="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/";
+const B5="https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/";
+const OLL="https://openlearninglibrary.mit.edu/courses/course-v1:MITx+6.036+1T2019/course/";
+const TB="https://tamarabroderick.com/files/ml_6036_2020_lectures/";
+const C18_05=B3+"pages/classes-reading-and-in-class-materials/";
+const PS18_05=B3+"pages/problem-sets/";
+
+/* helper per item 6.0001: video slug, slide slug, code slug */
+const l1=(v,s,c,q)=>{const r=[{l:"▶ Video",u:B1+"resources/"+v+"/"},{l:"Slide",u:B1+"resources/"+s+"/"},{l:"Codice",u:B1+"resources/"+c+"/",a:1}];if(q)r.push({l:"✎ Esercizi in aula",u:B1+"pages/in-class-questions-and-video-solutions/lecture-"+q+"/"});return r;};
+const l2=(v,n)=>[{l:"▶ Video",u:B2+"resources/"+v+"/"},{l:"Slide",u:B2+"resources/mit6_0002f16_lec"+n+"/"}];
+const l4=v=>[{l:"▶ Video",u:B4+"resources/"+v+"/"}];
+const l5=(y,n)=>[{l:"▶ Video",u:"https://youtu.be/"+y},{l:"Slide",u:TB+"broderick_lecture_"+n+".pdf"}];
+const c5=[{l:"Letture + slide classe",u:C18_05},{l:"Video (RES.6-012)",u:"https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/",a:1}];
+
+const PLAN = [
+{
+ num:"0", kicker:"Fase 0 · mesi 1–4", title:"Fondamenta di programmazione",
+ why:"Si parte dalle basi, senza salti: il corso introduttivo ufficiale del MIT in Python. Ogni lezione qui sotto ha il suo video, le sue slide e il codice mostrato in aula.",
+ courses:[
+  {code:"6.0001", title:"Introduction to Computer Science and Programming in Python", desc:"Fall 2016 · Ana Bell, Eric Grimson, John Guttag · 12 videolezioni + 6 problem set",
+   links:[{l:"Pagina corso",u:B1},{l:"Letture (libro di testo)",u:B1+"pages/readings/"},{l:"Domande in aula + soluzioni video",u:B1+"pages/in-class-questions-and-video-solutions/"}],
+   items:[
+    {tag:"Lez. 1", t:"What is Computation?", d:"Cos'è la computazione · libro: cap. 1, 2.1", L:l1("lecture-1-what-is-computation","mit6_0001f16_lec1","lec1",1)},
+    {tag:"Lez. 2", t:"Branching and Iteration", d:"Condizioni e cicli", L:l1("lecture-2-branching-and-iteration","mit6_0001f16_lec2","lec2_branch_loops",2)},
+    {tag:"PS 0", ps:1, t:"Problem Set 0", d:"Setup ambiente + primo programma", L:[{l:"Tutti i pset",u:B1+"pages/assignments/"}]},
+    {tag:"Lez. 3", t:"String Manipulation, Guess and Check, Approximations, Bisection", d:"Stringhe e approssimazioni", L:l1("lecture-3-string-manipulation-guess-and-check-approximations-bisection","mit6_0001f16_lec3","lec3_strings_algos",3)},
+    {tag:"PS 1", ps:1, t:"Problem Set 1", d:"House Hunting", L:[{l:"Tutti i pset",u:B1+"pages/assignments/"}]},
+    {tag:"Lez. 4", t:"Decomposition, Abstraction, and Functions", d:"Funzioni e astrazione", L:l1("lecture-4-decomposition-abstraction-and-functions","mit6_0001f16_lec4","lec4_functions",4)},
+    {tag:"Lez. 5", t:"Tuples, Lists, Aliasing, Mutability, and Cloning", d:"Strutture dati e insidie dell'aliasing", L:l1("lecture-5-tuples-lists-aliasing-mutability-and-cloning","mit6_0001f16_lec5","lec5_tuples_lists",5)},
+    {tag:"PS 2", ps:1, t:"Problem Set 2", d:"Hangman", L:[{l:"Tutti i pset",u:B1+"pages/assignments/"}]},
+    {tag:"Lez. 6", t:"Recursion and Dictionaries", d:"Ricorsione e dizionari", L:l1("lecture-6-recursion-and-dictionaries","mit6_0001f16_lec6","lec6_recursion_dictionaries")},
+    {tag:"Lez. 7", t:"Testing, Debugging, Exceptions, and Assertions", d:"Scrivere codice che non si rompe", L:l1("lecture-7-testing-debugging-exceptions-and-assertions","mit6_0001f16_lec7","lec7_debug_except",7)},
+    {tag:"PS 3", ps:1, t:"Problem Set 3", d:"Word Game", L:[{l:"Tutti i pset",u:B1+"pages/assignments/"}]},
+    {tag:"Lez. 8", t:"Object Oriented Programming", d:"Classi e oggetti", L:l1("lecture-8-object-oriented-programming","mit6_0001f16_lec8","lec8_classes",8)},
+    {tag:"Lez. 9", t:"Python Classes and Inheritance", d:"Ereditarietà", L:l1("lecture-9-python-classes-and-inheritance","mit6_0001f16_lec9","lec9_inheritance",9)},
+    {tag:"PS 4", ps:1, t:"Problem Set 4", d:"Permutazioni e cifrari", L:[{l:"Tutti i pset",u:B1+"pages/assignments/"}]},
+    {tag:"Lez. 10", t:"Understanding Program Efficiency, Part 1", d:"Complessità, notazione O", L:l1("lecture-10-understanding-program-efficiency-part-1","mit6_0001f16_lec10","lec10_complexity_part1")},
+    {tag:"Lez. 11", t:"Understanding Program Efficiency, Part 2", d:"Classi di complessità", L:l1("lecture-11-understanding-program-efficiency-part-2","mit6_0001f16_lec11","lec11_complexity_part2")},
+    {tag:"Lez. 12", t:"Searching and Sorting", d:"Ricerca e ordinamento", L:l1("lecture-12-searching-and-sorting","mit6_0001f16_lec12","lec12_sorting")},
+    {tag:"PS 5", ps:1, t:"Problem Set 5", d:"Monitor di feed RSS", L:[{l:"Tutti i pset",u:B1+"pages/assignments/"}]}
+   ]}
+ ]
+},
+{
+ num:"1", kicker:"Fase 1 · mesi 5–8", title:"Computational thinking e data science",
+ why:"La seconda metà del semestre MIT: ottimizzazione, simulazione, statistica applicata e il primo assaggio di machine learning. Ogni lezione con video e slide dedicate.",
+ courses:[
+  {code:"6.0002", title:"Introduction to Computational Thinking and Data Science", desc:"Fall 2016 · Guttag, Grimson · 15 videolezioni + 5 problem set",
+   links:[{l:"Pagina corso",u:B2},{l:"Letture",u:B2+"pages/readings/"},{l:"Codice e file aggiuntivi",u:B2+"pages/lecture-slides-and-files/"}],
+   items:[
+    {tag:"Lez. 1", t:"Introduction and Optimization Problems", d:"Problemi di ottimizzazione, knapsack", L:l2("lecture-1-introduction-and-optimization-problems",1)},
+    {tag:"Lez. 2", t:"Optimization Problems", d:"Programmazione dinamica", L:l2("lecture-2-optimization-problems",2)},
+    {tag:"PS 1", ps:1, t:"Problem Set 1", d:"Space Cows (greedy vs brute force)", L:[{l:"Tutti i pset",u:B2+"pages/assignments/"}]},
+    {tag:"Lez. 3", t:"Graph-theoretic Models", d:"Modelli a grafo", L:l2("lecture-3-graph-theoretic-models",3)},
+    {tag:"Lez. 4", t:"Stochastic Thinking", d:"Pensiero stocastico", L:l2("lecture-4-stochastic-thinking",4)},
+    {tag:"PS 2", ps:1, t:"Problem Set 2", d:"Grafi e percorsi minimi", L:[{l:"Tutti i pset",u:B2+"pages/assignments/"}]},
+    {tag:"Lez. 5", t:"Random Walks", d:"Passeggiate aleatorie", L:l2("lecture-5-random-walks",5)},
+    {tag:"Lez. 6", t:"Monte Carlo Simulation", d:"Simulazione Monte Carlo", L:l2("lecture-6-monte-carlo-simulation",6)},
+    {tag:"PS 3", ps:1, t:"Problem Set 3", d:"Simulazione di robot", L:[{l:"Tutti i pset",u:B2+"pages/assignments/"}]},
+    {tag:"Lez. 7", t:"Confidence Intervals", d:"Intervalli di confidenza", L:l2("lecture-7-confidence-intervals",7)},
+    {tag:"Lez. 8", t:"Sampling and Standard Error", d:"Campionamento ed errore standard", L:l2("lecture-8-sampling-and-standard-error",8)},
+    {tag:"PS 4", ps:1, t:"Problem Set 4", d:"Simulazione stocastica", L:[{l:"Tutti i pset",u:B2+"pages/assignments/"}]},
+    {tag:"Lez. 9", t:"Understanding Experimental Data", d:"Fit di dati sperimentali", L:l2("lecture-9-understanding-experimental-data",9)},
+    {tag:"Lez. 10", t:"Understanding Experimental Data (cont.)", d:"Overfitting e validazione", L:l2("lecture-10-understanding-experimental-data-cont",10)},
+    {tag:"Lez. 11", t:"Introduction to Machine Learning", d:"Primo contatto con il ML", L:l2("lecture-11-introduction-to-machine-learning",11)},
+    {tag:"PS 5", ps:1, t:"Problem Set 5", d:"Regressione su dati climatici", L:[{l:"Tutti i pset",u:B2+"pages/assignments/"}]},
+    {tag:"Lez. 12", t:"Clustering", d:"K-means", L:l2("lecture-12-clustering",12)},
+    {tag:"Lez. 13", t:"Classification", d:"KNN, regressione logistica", L:l2("lecture-13-classification",13)},
+    {tag:"Lez. 14", t:"Classification and Statistical Sins", d:"Metriche e trappole statistiche", L:l2("lecture-14-classification-and-statistical-sins",14)},
+    {tag:"Lez. 15", t:"Statistical Sins and Wrap Up", d:"Chiusura del corso", L:l2("lecture-15-statistical-sins-and-wrap-up",15)}
+   ]}
+ ]
+},
+{
+ num:"2", kicker:"Fase 2 · mesi 9–13", title:"Probabilità e statistica",
+ why:"Il corso più sinergico con il tuo lavoro di forecasting. 18.05 è organizzato per classi: ogni classe ha letture, slide e materiale in aula raccolti in un'unica pagina (linkata su ogni voce). Per i video, le lezioni di Tsitsiklis (RES.6-012) coprono l'unità di probabilità.",
+ courses:[
+  {code:"18.05", title:"Introduction to Probability and Statistics", desc:"Spring 2022 · Orloff, French Kamrin · letture + slide per classe + problem set con soluzioni",
+   links:[{l:"Pagina corso",u:B3},{l:"Materiali per classe",u:C18_05},{l:"Problem set + soluzioni",u:PS18_05},{l:"Esami con soluzioni",u:B3+"pages/exams/"}],
+   items:[
+    {sep:"Unità 1 · Probabilità"},
+    {tag:"Cl. 1–2", t:"Counting, insiemi, probabilità di base", d:"Calcolo combinatorio e assiomi", L:c5},
+    {tag:"Cl. 3", t:"Probabilità condizionata e teorema di Bayes", d:"Il cuore di tutto quello che segue", L:c5},
+    {tag:"PS 1", ps:1, t:"Problem Set 1", d:"Con soluzioni", L:[{l:"Pset + soluzioni",u:PS18_05}]},
+    {tag:"Cl. 4–5", t:"Variabili aleatorie discrete", d:"Distribuzioni, valore atteso, varianza", L:c5},
+    {tag:"Cl. 6–7", t:"Variabili aleatorie continue", d:"Densità, uniforme, esponenziale, normale", L:c5},
+    {tag:"PS 2", ps:1, t:"Problem Set 2", d:"", L:[{l:"Pset + soluzioni",u:PS18_05}]},
+    {tag:"Cl. 8", t:"Legge dei grandi numeri e teorema del limite centrale", d:"Perché la normale è ovunque", L:c5},
+    {tag:"Cl. 9", t:"Distribuzioni congiunte, covarianza, correlazione", d:"", L:c5},
+    {tag:"PS 3", ps:1, t:"Problem Set 3", d:"", L:[{l:"Pset + soluzioni",u:PS18_05}]},
+    {sep:"Unità 2 · Inferenza bayesiana"},
+    {tag:"Cl. 10–12", t:"Aggiornamento bayesiano (priori discreti)", d:"Probabilità come grado di fiducia", L:[{l:"Letture + slide classe",u:C18_05}]},
+    {tag:"Cl. 13–14", t:"Priori continui e distribuzioni beta", d:"Priori coniugati", L:[{l:"Letture + slide classe",u:C18_05}]},
+    {tag:"PS 4–5", ps:1, t:"Problem Set 4 e 5", d:"", L:[{l:"Pset + soluzioni",u:PS18_05}]},
+    {tag:"Cl. 15–16", t:"Previsione, odds, confronto di modelli", d:"", L:[{l:"Letture + slide classe",u:C18_05}]},
+    {tag:"PS 6", ps:1, t:"Problem Set 6", d:"", L:[{l:"Pset + soluzioni",u:PS18_05}]},
+    {sep:"Unità 3 · Inferenza frequentista"},
+    {tag:"Cl. 17–19", t:"Test di ipotesi (NHST), significatività", d:"z-test, t-test, chi quadro", L:[{l:"Letture + slide classe",u:C18_05}]},
+    {tag:"Cl. 20–22", t:"Intervalli di confidenza", d:"Quelli che usi già nel forecasting", L:[{l:"Letture + slide classe",u:C18_05}]},
+    {tag:"PS 7–8", ps:1, t:"Problem Set 7 e 8", d:"", L:[{l:"Pset + soluzioni",u:PS18_05}]},
+    {tag:"Cl. 23–24", t:"Bootstrap", d:"Stima per ricampionamento", L:[{l:"Letture + slide classe",u:C18_05}]},
+    {tag:"Cl. 25–26", t:"Regressione lineare (minimi quadrati)", d:"Ponte perfetto verso 18.06", L:[{l:"Letture + slide classe",u:C18_05}]},
+    {tag:"PS 9–10", ps:1, t:"Problem Set 9 e 10 + ripasso finale", d:"Esame finale con soluzioni come autoverifica", L:[{l:"Pset + soluzioni",u:PS18_05},{l:"Esami",u:B3+"pages/exams/",a:1}]}
+   ]}
+ ]
+},
+{
+ num:"3", kicker:"Fase 3 · mesi 14–17", title:"Algebra lineare",
+ why:"Le videolezioni di Gilbert Strang (registrate nel 1999, ancora insuperate). Selezione mirata al ML: 19 lezioni su 34 — il resto si può saltare senza rimorsi. Ogni voce linka direttamente al video con trascrizione.",
+ courses:[
+  {code:"18.06", title:"Linear Algebra", desc:"Spring 2010 · Gilbert Strang · videolezioni + problem set ed esami con soluzioni",
+   links:[{l:"Pagina corso",u:B4},{l:"Tutte le videolezioni",u:B4+"video_galleries/video-lectures/"},{l:"Problem set + soluzioni",u:B4+"pages/assignments/"},{l:"Esami + soluzioni",u:B4+"pages/exams/"},{l:"Letture",u:B4+"pages/readings/"}],
+   items:[
+    {sep:"Blocco A · Sistemi e spazi vettoriali"},
+    {tag:"Lez. 1", t:"The Geometry of Linear Equations", d:"Righe vs colonne: il cambio di prospettiva", L:l4("lecture-1-the-geometry-of-linear-equations")},
+    {tag:"Lez. 2", t:"Elimination with Matrices", d:"", L:l4("lecture-2-elimination-with-matrices")},
+    {tag:"Lez. 3", t:"Multiplication and Inverse Matrices", d:"", L:l4("lecture-3-multiplication-and-inverse-matrices")},
+    {tag:"Lez. 4", t:"Factorization into A = LU", d:"", L:l4("lecture-4-factorization-into-a-lu")},
+    {tag:"Lez. 5", t:"Transposes, Permutations, Spaces Rⁿ", d:"", L:l4("lecture-5-transposes-permutations-spaces-r-n")},
+    {tag:"PS", ps:1, t:"Checkpoint esercizi · Blocco A (prima parte)", d:"Problem set 1–2", L:[{l:"Pset + soluzioni",u:B4+"pages/assignments/"}]},
+    {tag:"Lez. 6", t:"Column Space and Nullspace", d:"", L:l4("lecture-6-column-space-and-nullspace")},
+    {tag:"Lez. 7", t:"Solving Ax = 0: Pivot Variables, Special Solutions", d:"", L:l4("lecture-7-solving-ax-0-pivot-variables-special-solutions")},
+    {tag:"Lez. 8", t:"Solving Ax = b: Row Reduced Form R", d:"", L:l4("lecture-8-solving-ax-b-row-reduced-form-r")},
+    {tag:"Lez. 9", t:"Independence, Basis, and Dimension", d:"", L:l4("lecture-9-independence-basis-and-dimension")},
+    {tag:"Lez. 10", t:"The Four Fundamental Subspaces", d:"La lezione manifesto del corso", L:l4("lecture-10-the-four-fundamental-subspaces")},
+    {tag:"PS", ps:1, t:"Checkpoint esercizi · Blocco A (seconda parte)", d:"Problem set 3–4", L:[{l:"Pset + soluzioni",u:B4+"pages/assignments/"}]},
+    {sep:"Blocco B · Ortogonalità e minimi quadrati"},
+    {tag:"Lez. 14", t:"Orthogonal Vectors and Subspaces", d:"", L:l4("lecture-14-orthogonal-vectors-and-subspaces")},
+    {tag:"Lez. 15", t:"Projections onto Subspaces", d:"", L:l4("lecture-15-projections-onto-subspaces")},
+    {tag:"Lez. 16", t:"Projection Matrices and Least Squares", d:"La regressione lineare vista geometricamente", L:l4("lecture-16-projection-matrices-and-least-squares")},
+    {tag:"Lez. 17", t:"Orthogonal Matrices and Gram-Schmidt", d:"", L:l4("lecture-17-orthogonal-matrices-and-gram-schmidt")},
+    {tag:"PS", ps:1, t:"Checkpoint esercizi · Blocco B", d:"Pset su ortogonalità e proiezioni", L:[{l:"Pset + soluzioni",u:B4+"pages/assignments/"}]},
+    {sep:"Blocco C · Autovalori, definite positive, SVD"},
+    {tag:"Lez. 21", t:"Eigenvalues and Eigenvectors", d:"", L:l4("lecture-21-eigenvalues-and-eigenvectors")},
+    {tag:"Lez. 22", t:"Diagonalization and Powers of A", d:"", L:l4("lecture-22-diagonalization-and-powers-of-a")},
+    {tag:"Lez. 25", t:"Symmetric Matrices and Positive Definiteness", d:"", L:l4("lecture-25-symmetric-matrices-and-positive-definiteness")},
+    {tag:"Lez. 27", t:"Positive Definite Matrices and Minima", d:"Il legame con l'ottimizzazione del ML", L:l4("lecture-27-positive-definite-matrices-and-minima")},
+    {tag:"Lez. 29", t:"Singular Value Decomposition", d:"La regina delle fattorizzazioni", L:l4("lecture-29-singular-value-decomposition")},
+    {tag:"PS", ps:1, t:"Checkpoint esercizi · Blocco C", d:"Esame finale (selezione) come autoverifica", L:[{l:"Esami + soluzioni",u:B4+"pages/exams/"}]}
+   ]}
+ ]
+},
+{
+ num:"4", kicker:"Fase 4 · mesi 18–22", title:"Machine Learning",
+ why:"Il corso ML undergrad del MIT, lezioni di Tamara Broderick. Ogni voce linka il video YouTube ufficiale e le slide. Gli esercizi interattivi con autocorrezione sono sulla Open Learning Library (gratuita, iscrizione opzionale).",
+ courses:[
+  {code:"6.036", title:"Introduction to Machine Learning", desc:"Fall 2020 · Tamara Broderick · 12 videolezioni + esercizi interattivi",
+   links:[{l:"Pagina corso OCW",u:B5},{l:"Playlist completa YouTube",u:"https://www.youtube.com/watch?v=0xaLT4Svzgo&list=PLxC_ffO4q_rW0bqQB80_vcQB09HOA3ClV"},{l:"Esercizi interattivi (OLL)",u:OLL}],
+   items:[
+    {tag:"Lez. 1", t:"Basics", d:"Formulazione del problema di apprendimento", L:l5("0xaLT4Svzgo","01")},
+    {tag:"Lez. 2", t:"Perceptrons", d:"", L:l5("A3obZhw7Jc4","02")},
+    {tag:"Lez. 3", t:"Features", d:"Rappresentazione dei dati", L:l5("WZVNvfMdk-E","03")},
+    {tag:"HW", ps:1, t:"Esercizi settimane 1–3", d:"", L:[{l:"OLL",u:OLL}]},
+    {tag:"Lez. 4", t:"Logistic Regression", d:"Classificazione lineare logistica", L:l5("abB3fwfPy14","04")},
+    {tag:"Lez. 5", t:"Regression", d:"Ridge, gradient descent", L:l5("OpvrwhWEUmY","05")},
+    {tag:"HW", ps:1, t:"Esercizi settimane 4–5", d:"", L:[{l:"OLL",u:OLL}]},
+    {tag:"Lez. 6", t:"Neural Networks", d:"Backpropagation", L:l5("N0uGnAfXUes","06")},
+    {tag:"Lez. 8", t:"Convolutional Neural Networks", d:"(la lez. 7 non esiste: settimana di festa)", L:l5("sFEZ180RvTI","08")},
+    {tag:"HW", ps:1, t:"Esercizi settimane 6–8", d:"", L:[{l:"OLL",u:OLL}]},
+    {tag:"Lez. 9", t:"State Machines and Markov Decision Processes", d:"", L:l5("O5hkIfUR_uA","09")},
+    {tag:"Lez. 10", t:"Reinforcement Learning", d:"", L:l5("Ir93m9OmOHo","10")},
+    {tag:"Lez. 11", t:"Recurrent Neural Networks", d:"Sequenze temporali — utile per il forecasting", L:l5("JZ0WVuk4mt8","11")},
+    {tag:"HW", ps:1, t:"Esercizi settimane 9–11", d:"", L:[{l:"OLL",u:OLL}]},
+    {tag:"Lez. 12", t:"Decision Trees and Random Forests", d:"", L:l5("ZOiBe-nrmc4","12")},
+    {tag:"Lez. 13", t:"Clustering", d:"", L:l5("BaZWcSq3IuI","13")},
+    {tag:"HW", ps:1, t:"Esercizi settimane 12–13", d:"", L:[{l:"OLL",u:OLL}]}
+   ]}
+ ]
+},
+{
+ num:"5", kicker:"Fase 5 · capstone", title:"Progetto finale: forecasting chiamate",
+ why:"Niente corso: applichi tutto a un problema vero che conosci meglio di chiunque — la previsione intraday dei volumi di chiamata. Chiude il cerchio e produce materiale concreto per il portfolio da Reporting & Forecast Analyst.",
+ courses:[
+  {code:"CAP", title:"Pipeline di forecasting volumi call center", desc:"Progetto personale · dati storici Genesys · Python",
+   links:[],
+   items:[
+    {tag:"M 1", cap:1, t:"Scope e dataset", d:"Estrazione storici, pulizia, struttura dati su slot 30 min"},
+    {tag:"M 2", cap:1, t:"EDA e baseline", d:"Stagionalità intraday/settimanale, media mobile pesata come riferimento"},
+    {tag:"M 3", cap:1, t:"Modello statistico", d:"Holt-Winters e decomposizione stagionale — capiti a fondo, non copiati"},
+    {tag:"M 4", cap:1, t:"Modello ML", d:"Feature engineering + regressione/alberi (da 6.036) sugli stessi dati"},
+    {tag:"M 5", cap:1, t:"Validazione walk-forward", d:"Confronto onesto: baseline vs statistico vs ML, metriche su slot"},
+    {tag:"M 6", cap:1, t:"Report finale", d:"Scrittura del progetto come case study per il portfolio"}
+   ]}
+ ]
+}
+];
+
+/* ---------- persistenza ---------- */
+const KEY="ocw-paki-v1";
+let state={};
+function load(){ try{ state=JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ state={}; } }
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
+
+/* ---------- render ---------- */
+function render(){
+  const root=document.getElementById("plan");
+  let html="";
+  PLAN.forEach((ph,pi)=>{
+    html+=`<section class="phase" id="phase-${pi}">
+      <div class="phase-node">${ph.num}</div>
+      <div class="phase-head">
+        <span class="kicker">${ph.kicker}</span>
+        <h2>${ph.title}</h2>
+        <p class="why">${ph.why}</p>
+      </div>`;
+    ph.courses.forEach((c,ci)=>{
+      const links=c.links.map(L=>`<a href="${L.u}" target="_blank" rel="noopener">${L.l} ↗</a>`).join("");
+      html+=`<div class="course" id="course-${pi}-${ci}">
+        <div class="course-top">
+          <span class="code">${c.code}</span>
+          <div class="course-title">
+            <h3>${c.title}</h3>
+            <div class="desc">${c.desc}</div>
+            ${links?`<div class="course-links">${links}</div>`:""}
+          </div>
+          <span class="cprog" id="cprog-${pi}-${ci}"></span>
+        </div>
+        <div class="items">`;
+      c.items.forEach((it,ii)=>{
+        if(it.sep){ html+=`<div class="sep">${it.sep}</div>`; return; }
+        const id=`i-${pi}-${ci}-${ii}`;
+        const cls=it.ps?"tag ps":(it.cap?"tag cap":"tag");
+        const il=(it.L&&it.L.length)?`<div class="ilinks">${it.L.map(x=>`<a class="${x.a?"alt":""}" href="${x.u}" target="_blank" rel="noopener">${x.l}</a>`).join("")}</div>`:"";
+        html+=`<div class="item">
+          <input type="checkbox" id="${id}" data-id="${id}" ${state[id]?"checked":""}>
+          <div class="body">
+            <label for="${id}"><span class="${cls}">${it.tag}</span><span class="t">${it.t}</span>${it.d?`<span class="d">${it.d}</span>`:""}</label>
+            ${il}
+          </div>
+        </div>`;
+      });
+      html+=`</div></div>`;
+    });
+    html+=`</section>`;
+  });
+  root.innerHTML=html;
+  root.addEventListener("change",e=>{
+    if(e.target.matches("input[type=checkbox]")){
+      state[e.target.dataset.id]=e.target.checked;
+      if(!e.target.checked) delete state[e.target.dataset.id];
+      save(); refresh();
+    }
+  });
+  refresh();
+}
+
+function refresh(){
+  let tot=0, done=0;
+  PLAN.forEach((ph,pi)=>{
+    let pTot=0,pDone=0;
+    ph.courses.forEach((c,ci)=>{
+      let cTot=0,cDone=0;
+      c.items.forEach((it,ii)=>{
+        if(it.sep) return;
+        cTot++; pTot++; tot++;
+        if(state[`i-${pi}-${ci}-${ii}`]){ cDone++; pDone++; done++; }
+      });
+      const el=document.getElementById(`cprog-${pi}-${ci}`);
+      if(el) el.textContent=`${cDone}/${cTot}`;
+      const cc=document.getElementById(`course-${pi}-${ci}`);
+      if(cc) cc.classList.toggle("complete",cDone===cTot&&cTot>0);
+    });
+    const node=document.getElementById(`phase-${pi}`);
+    if(node) node.classList.toggle("complete",pDone===pTot&&pTot>0);
+  });
+  const pct=tot?Math.round(done/tot*100):0;
+  document.getElementById("gbar-fill").style.width=pct+"%";
+  document.getElementById("gpct").textContent=`${done}/${tot} · ${pct}%`;
+}
+
+/* ---------- esporta / importa ---------- */
+function exportProgress(){
+  const blob=new Blob([JSON.stringify(state,null,1)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="progresso-ocw.json";
+  a.click(); URL.revokeObjectURL(a.href);
+}
+function importProgress(file){
+  const r=new FileReader();
+  r.onload=()=>{ try{ state=JSON.parse(r.result)||{}; save(); render(); }catch(e){ alert("File non valido."); } };
+  r.readAsText(file);
+}
+document.getElementById("btn-export").addEventListener("click",exportProgress);
+document.getElementById("file-import").addEventListener("change",e=>{ if(e.target.files[0]) importProgress(e.target.files[0]); });
+
+load(); render();
+</script>
+</body>
+</html>
